@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
 
-const CoffeeCard = ({coffee}) => {
+const CoffeeCard = ({coffee,setCoffies,coffies}) => {
 
     const {_id,name,photo,details,category,quantity,supplier}=coffee
 
@@ -32,6 +32,9 @@ const CoffeeCard = ({coffee}) => {
                     swal("Poof! Your imaginary file has been deleted!", {
                         icon: "success",
                       });
+
+                      const remaining=coffies.filter(cof=>cof._id!==_id)
+                      setCoffies(remaining)
                 }
             })
 
@@ -85,6 +88,8 @@ const CoffeeCard = ({coffee}) => {
 };
 CoffeeCard.propTypes={
     coffee:PropTypes.object.isRequired,
+    coffies:PropTypes.object,
+    setCoffies:PropTypes.object,
 }
 
 export default CoffeeCard;
